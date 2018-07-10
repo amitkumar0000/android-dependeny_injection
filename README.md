@@ -2,6 +2,9 @@
 
 Dagger 2 DI
 
+Dependency Injection
+  It is mechanism to inject object to another object. Internally it uses Factory Patter to create Object.
+
 Dagger 2 uses the following annotations:
 
 @Module and @Provides: define classes and methods which provide dependencies
