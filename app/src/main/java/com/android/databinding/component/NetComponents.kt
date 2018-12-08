@@ -12,10 +12,8 @@ import com.android.databinding.ui.NetworkActivity
 import com.android.databinding.viewmodels.CryptoViewModel
 
 
-@Component(modules = arrayOf(AppModule::class, NetModule::class, ViewModelModule::class) )
+@Component(modules = arrayOf(AppModule::class, NetModule::class) )
 @Singleton
 interface NetComponents {
-    fun inject(activity: NetworkActivity)
     fun inject(apiManager: ApiManager)
-    fun inject(crypto: CryptoViewModel)
 }

@@ -1,12 +1,11 @@
 package com.android.databinding.models
-
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.databinding.ObservableField
+import android.util.Log
 import android.view.View
-import com.android.databinding.ui.NetworkActivity
 import com.android.databinding.viewmodels.CryptoViewModel
+import com.jakewharton.rxbinding2.view.RxView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 class CryptoInfo(var cryptD: CryptoViewModel) {
     var cryptoText: ObservableField<String>
@@ -17,9 +16,15 @@ class CryptoInfo(var cryptD: CryptoViewModel) {
         cryptoText.set("Initial Text")
     }
 
-
+    var count =0
     fun onBtcBtnAction(view: View){
-        cryptD.getBtcData()
+        RxView.clicks(view)
+                .debounce(300,TimeUnit.MILLISECONDS,AndroidSchedulers.mainThread())
+                .subscribe({
+                    count++
+                    Log.d("TAG"," getBtc get Called $count")
+                    cryptD.getBtcData()
+                })
     }
 
 

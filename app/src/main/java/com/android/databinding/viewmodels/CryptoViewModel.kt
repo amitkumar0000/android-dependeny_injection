@@ -17,7 +17,7 @@ class CryptoViewModel() :ViewModel(){
     lateinit var apiManager:ApiManager
 
     init{
-        MyApp.netComponents.inject(this)
+        MyApp.viewmodelComponents.inject(this)
     }
 
     fun getBtcData(){
