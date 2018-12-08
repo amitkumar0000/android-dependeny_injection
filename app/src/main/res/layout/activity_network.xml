@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="com.android.databinding.ui.NetworkActBinding">
+        <import type="android.view.View" />
+        <variable
+            name="cryptoInfo"
+            type="com.android.databinding.models.CryptoInfo"
+
+            />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.NetworkActivity">
+
+        <Button
+            android:id="@+id/btcBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="33dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginBottom="199dp"
+            android:onClick="@{(view)->cryptoInfo.onBtcBtnAction(view)}"
+            android:text="BTC"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btcTV"
+            app:layout_constraintTop_toBottomOf="@+id/btcTV" />
+
+        <TextView
+            android:id="@+id/btcTV"
+            android:layout_width="155dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="74dp"
+            android:layout_marginLeft="74dp"
+            android:layout_marginTop="214dp"
+            android:layout_marginBottom="22dp"
+            android:text="@{cryptoInfo.cryptoText}"
+            app:layout_constraintBottom_toTopOf="@+id/btcBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,34 @@
+@Module to signal to Dagger to search within the available methods for possible instance providers.
+@Provides methods that will actually expose available return types should also be annotated with the @Provides annotation
+The @Singleton annotation is used to declare to Dagger to be only initialized only once during the entire lifecycle of the application
+
+
+If we need two different objects of the same return type,
+we can use the @Named qualifier annotation.
+You will define it both where you provide the singletons (@Provides annotation),
+and where you inject them (@Inject annotations):
+
+@Provides @Named("cached")
+@Singleton
+OkHttpClient provideOkHttpClient(Cache cache) {
+    OkHttpClient client = new OkHttpClient();
+    client.setCache(cache);
+    return client;
+}
+
+@Provides @Named("non_cached") @Singleton
+OkHttpClient provideOkHttpClient() {
+    OkHttpClient client = new OkHttpClient();
+    return client;
+}
+
+@Inject @Named("cached") OkHttpClient client;
+@Inject @Named("non_cached") OkHttpClient client2;
+
+
+@Named is a qualifier that is pre-defined by dagger, but you can create your own qualifier annotations as well:
+
+@Qualifier
+@Documented
+@Retention(RUNTIME)
+public @interface DefaultPreferences {
